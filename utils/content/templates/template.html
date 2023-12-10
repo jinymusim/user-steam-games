@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title> Owned Games </title>
+</head>
+<body>
+<h1>Games of {{ user.USER }} </h1>
+    <ul>
+        {% for game in games%}
+            <li>
+                <em> {{ game.name }}: </em> {{ game.playtime_forever }} Hours
+                <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }}" width="120" height="90" />
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
