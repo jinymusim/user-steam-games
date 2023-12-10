@@ -39,7 +39,7 @@ class UserDataManager:
         self.manager_file = MANAGER_FILE
         self.user_datafile_dict = {}
         if os.path.exists(manager_file) and os.path.isfile(manager_file):
-            print("User data file found")
+            print("Manger data file found")
             self.load_manager_file()
         else:
             open(self.manager_file, 'x')
@@ -49,8 +49,8 @@ class UserDataManager:
             for line in file.readlines():
                 user_userfile = line.split('=')
                 # Check that the files exists
-                if len(user_userfile) == 2 and os.path.exists(user_userfile[1]) and os.path.isfile(user_userfile[1]):
-                    self.user_datafile_dict[user_userfile[0]] = user_userfile[1]
+                if len(user_userfile) == 2 and os.path.exists(user_userfile[1].strip()) and os.path.isfile(user_userfile[1].strip()):
+                    self.user_datafile_dict[user_userfile[0]] = user_userfile[1].strip()
     
     def get_user_data(self, user, input_if_missing: bool=True):
         if user in self.user_datafile_dict.keys():
