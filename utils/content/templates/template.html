@@ -1,18 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title> Owned Games </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Items with Pictures</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background: linear-gradient(103deg, rgb(137, 247, 234) 7.3%, rgb(102, 117, 241) 100.2%);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+
+        .item {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .item:hover {
+            background-color: #4174f3;
+            box-shadow: 0 0 11px lightblue;
+
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .item-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Games of {{ user.USER }} </h1>
-    <ul>
-        {% for game in games%}
-            <li>
-                <em> {{ game.name }}: </em> {{ game.playtime_forever }} Hours
-                <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }}" width="120" height="90" />
-            </li>
-        {% endfor %}
-    </ul>
+
+<h1>Games of {{ user.USER }}</h1>
+
+<div class="item-container">
+    {% for game in games %}
+        
+        <div class="item">
+            <div class="item_background"></div>
+            <h2>{{ game.name }}</h2>
+            <h3>{{ game.playtime_forever }} Hours</h3>
+            <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image">
+        </div>
+    {% endfor %}
+</div>
+
 </body>
 </html>
