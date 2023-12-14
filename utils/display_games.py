@@ -22,7 +22,8 @@ def display_games(user: UserData, games):
     template = env.get_template('template.html')
     context = {
         'user' : user,
-        'games' : games
+        'games' : games,
+        'sum_hours' : game_hours
     }
     with open(result_filename, mode="w", encoding="utf-8") as results:
         results.write(template.render(context))

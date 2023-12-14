@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Items with Pictures</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,6 +52,12 @@
             text-decoration: none;
             color: inherit;
         }
+        
+        .chart {
+            width: 100%;
+            max-width: 200px; /* Set a maximum width for better layout */
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
@@ -62,8 +69,25 @@
         <a href="{{ game.href_site }}" class="item-link">
             <div class="item">
                 <h2>{{ game.name }}</h2>
-                <h3>{{ game.playtime_forever }} Hours</h3>
                 <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image">
+                <canvas class="chart" id="chart-{{ loop.index }}"></canvas>
+                <script>
+                    // JavaScript code for creating the pie chart
+                    var ctx = document.getElementById('chart-{{ loop.index }}').getContext('2d');
+                    var myChart = new Chart(ctx, {
+                        type: 'pie',
+                        data: {
+                            labels: ['Played Hours', 'Rest'],
+                            datasets: [{
+                                data: [{{ game.playtime_forever }}, {{ sum_hours }}],
+                                backgroundColor: [
+                                    'rgba(255, 99, 132, 0.7)',
+                                    'rgba(191, 191, 191, 0.8)',
+                                ],
+                            }],
+                        },
+                    });
+                </script>
             </div>
         </a>
     {% endfor %}
