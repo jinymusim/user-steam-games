@@ -25,19 +25,19 @@ class APICalls:
         name = re.sub(r'[<>:"/\\\|\?\*]+','',game_data['name']) 
         if os.path.exists(os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg")):
             print(f"{game_data['name']}: Cached image!")
-            game_data['img_icon'] = os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg") 
+            game_data['img_icon'] = os.path.abspath(os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg")) 
            
         else:
             url=f"https://media.steampowered.com/steamcommunity/public/images/apps/{game_data['appid']}/{game_data['img_icon_url']}.jpg"
             request_result = requests.get(url)
             if not request_result.ok:
                 print("Couldn't get image")
-                game_data['img_icon'] = os.path.join(os.path.dirname(__file__), 'content','images', "placeholder.jpeg")
+                game_data['img_icon'] = os.path.abspath(os.path.join(os.path.dirname(__file__), 'content','images', "placeholder.jpeg"))
             else:
                 image = Image.open(io.BytesIO(request_result.content))
                 image.save(os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg"))
-                game_data['img_icon'] = os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg")
-        game_data['img_icon_rel_path'] = os.path.relpath(game_data['img_icon'], os.path.join(os.path.dirname(__file__), '..'))
+                game_data['img_icon'] = os.path.abspath(os.path.join(os.path.dirname(__file__), 'content','images', f"{name}.jpeg"))
+        game_data['img_icon_rel_path'] = os.path.relpath(game_data['img_icon'], os.path.join(os.path.dirname(__file__), '..', 'website'))
                 
         
         

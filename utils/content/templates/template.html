@@ -55,10 +55,9 @@
     {% for game in games %}
         
         <div class="item">
-            <div class="item_background"></div>
             <h2>{{ game.name }}</h2>
             <h3>{{ game.playtime_forever }} Hours</h3>
-            <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image">
+            <a href="{{ game.href_site }}"><img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image"></a>
         </div>
     {% endfor %}
 </div>
