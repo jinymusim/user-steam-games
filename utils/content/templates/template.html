@@ -45,6 +45,12 @@
             grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
             gap: 20px;
         }
+
+        .item-link {
+            display: contents;
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -53,12 +59,13 @@
 
 <div class="item-container">
     {% for game in games %}
-        
-        <div class="item">
-            <h2>{{ game.name }}</h2>
-            <h3>{{ game.playtime_forever }} Hours</h3>
-            <a href="{{ game.href_site }}"><img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image"></a>
-        </div>
+        <a href="{{ game.href_site }}" class="item-link">
+            <div class="item">
+                <h2>{{ game.name }}</h2>
+                <h3>{{ game.playtime_forever }} Hours</h3>
+                <img src="{{ game.img_icon_rel_path }}" alt="{{ game.name }} Image">
+            </div>
+        </a>
     {% endfor %}
 </div>
 
