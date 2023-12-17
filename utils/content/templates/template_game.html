@@ -2,7 +2,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Items with Pictures</title>
+    <title>{{ game.name }}</title>
     <style>
 
         body {
@@ -19,6 +19,7 @@
 </head>
 
 <body>
-<h1> {{ game.name }} </h1>
+<a href="https://store.steampowered.com/app/{{ game.appid }}"><h1> {{ game.name }} </h1></a>
+
 </body>
 </html>
